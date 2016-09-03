@@ -235,16 +235,14 @@
 								// get the data
 								var col1 = $("#selcolumn1 option:selected").text();
 								var col2 = $("#selcolumn2 option:selected").text();
-								var x = dfcolumns[col1];
-								var y = dfcolumns[col2];
 								var dflist = {};
-								dflist[col1] = x;
-								dflist[col2] = y;
+								dflist[col1] = dfcolumns[col1];
+								dflist[col2] = dfcolumns[col2];
 								var req = ocpu.call(
 									"knitRegression",
 									{
 										dat: dflist,
-										conflevel: $('#conflevel').val(),
+										conflevel: Number($('#conflevel').val()),
 										filetype: $('input[name="optradio"]:checked').val()
 									},
 									function(session) {

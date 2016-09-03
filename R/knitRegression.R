@@ -1,8 +1,8 @@
 #' Knit regression
 #' @export
-knitRegression <- function(dat, conflevel="95", filetype="word_document"){
+knitRegression <- function(dat, conflevel=95, filetype="word_document"){
   dat <- as.data.frame(dat)
-  conflevel <- as.numeric(conflevel)/100
+  conflevel <- conflevel/100
   out <- rmarkdown::render(system.file(package = "opencpuHello", "templates", "regression.Rmd"),
                            output_dir = getwd(),
                            output_format = filetype,
