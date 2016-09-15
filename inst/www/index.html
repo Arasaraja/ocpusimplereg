@@ -104,8 +104,11 @@
 							console.log("Errors:", results.errors);
 							// stop if error
 							if (results.errors.length != 0) {
-								alert("Something is wrong with this file");
-								throw new Error("Something is wrong with this file");
+							  var code = results.errors[0].code;
+							  if(code != "UndetectableDelimiter"){
+								  alert("Something is wrong with this file");
+								  throw new Error("Something is wrong with this file");
+							  }
 							}
 							// make the df in columns format
 							var df = results.data;
@@ -129,6 +132,10 @@
 								}
 								isNumeric.push(typeof(col[i]) == "number")
 							}
+							// alert if less than two numeric columns
+              if(isNumeric.reduce(function(a, b) { return a + b; }, 0) < 2){
+                alert("This dataset doesn't contain two numeric columns; no way to perform a linear regression!");
+              }
 							// show the column selectors
 							$("#selectcolumns").show()
 								// show the 'report' block
