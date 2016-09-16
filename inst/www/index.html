@@ -127,10 +127,14 @@
 							for (var key in dfcolumns) {
 								var col = dfcolumns[key];
 								var i = 0;
-								while (col[i] == "") {
+								while (col[i] == "" || typeof(col[i]) == "number") {
 									i++
 								}
-								isNumeric.push(typeof(col[i]) == "number")
+								if(i == col.length){
+								  isNumeric.push(true)
+								}else{
+								  isNumeric.push(false)
+								}
 							}
 							// alert if less than two numeric columns
               if(isNumeric.reduce(function(a, b) { return a + b; }, 0) < 2){
